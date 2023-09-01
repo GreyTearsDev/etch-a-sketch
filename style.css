@@ -8,17 +8,21 @@ html{
   box-sizing: inherit; 
 }
 
-body {
+body, .grid-container{
   display: flex;
   justify-content: center;
-  background-color: rgb(30, 50, 67);
+  align-items: center;
 }
 
-.grid-container {
+body {
+  background-color: rgb(30, 50, 67);
   border: 1px solid red;
+}
+
+
+.grid-container {
   width: 320px;
   height: 320px;
-  display: flex;
   flex-wrap: wrap;
 }
 
