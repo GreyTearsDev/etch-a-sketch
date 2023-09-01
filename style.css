@@ -16,9 +16,10 @@ body {
 
 .grid-container {
   border: 1px solid red;
-  width: 340px;
-  height: 340px;
+  width: 320px;
+  height: 320px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .grid-element {

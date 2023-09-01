@@ -10,15 +10,15 @@ function createDivs() {
 function createArrayOfDivs(div) {
 	//Creates an array of divs
 	let arrayOfDivs = []
-	for (let i = 0; i < 16; i++) {
-		arrayOfDivs.unshift(div);
+	for (let i = 0; i < 256; i++) {
+		arrayOfDivs.unshift(div.cloneNode(true));
 	}
 	createGridOfDivs(arrayOfDivs);
 }
 
 function createGridOfDivs(arrayOfDivs) {
 	//Appends the divs onto the Grid container to crate the grid
-	let gridContainer = document.querySelector('.grid-container');
+	let gridContainer = document.body.querySelector('.grid-container');
 	for (element in arrayOfDivs) {
 		gridContainer.appendChild(arrayOfDivs[element]);
 	}
