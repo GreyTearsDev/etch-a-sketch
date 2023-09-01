@@ -5,6 +5,26 @@ html{
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
-    
+  box-sizing: inherit; 
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(30, 50, 67);
+}
+
+.grid-container {
+  border: 1px solid red;
+  width: 340px;
+  height: 340px;
+  display: flex;
+}
+
+.grid-element {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 0;
 }
