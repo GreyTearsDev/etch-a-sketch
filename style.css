@@ -16,7 +16,6 @@ body, .grid-container{
 
 body {
   background-color: rgb(30, 50, 67);
-  border: 1px solid red;
 }
 
 
@@ -30,6 +29,12 @@ body {
   height: 20px;
   width: 20px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #ccc;
   margin: 0;
+}
+
+.hi {
+  height: 200px;
+  width: 300px;
+  background-color: yellow;
 }
