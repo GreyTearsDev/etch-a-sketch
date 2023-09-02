@@ -2,26 +2,29 @@
 let squareDivs = document.createElement('div');
 squareDivs.className = 'grid-element';
 
-
-squareDivs.addEventListener('mouseover', () => changeDivColor());
-
 createGridOfDivs();
 
-function changeDivColor() {
+function changeDivColor(element) {
 	//changes the color of the div if the mouse hovers over it
-	let elements = createArrayOfDivs(squareDivs);
-	for (element in elements) {
-		elements[element].addEventListener('mouseover', () => elements[element].style.backgroundColor = 'black');
-	}
+	element.target.style.backgroundColor = 'black';
+}
 
+function addEventToDivs(arrayOfDivs) {
+	//adds the event listener to each of the divs;
+	for (element in arrayOfDivs) {
+		arrayOfDivs[element].addEventListener('mouseover', (event) => changeDivColor(event));
+	}
 }
 
 function createArrayOfDivs(div) {
 	//Creates an array of divs
 	let arrayOfDivs = [];
+	
 	for (let i = 0; i < (16 * 16); i++) {
 		arrayOfDivs.unshift(div.cloneNode(true));
 	}
+	// Add an event listener to ech of the divs in the array
+	addEventToDivs(arrayOfDivs);
 	return arrayOfDivs;
 }
 
@@ -31,13 +34,10 @@ function createGridOfDivs() {
 	let gridContainer = document.body.querySelector('.grid-container');
 
 	for (element in arrayOfDivs) {
-		arrayOfDivs[element].addEventListener('mouseover', () => arrayOfDivs[element].style.backgroundColor = 'black')
 		gridContainer.appendChild(arrayOfDivs[element]);
 	}
 }
 
-let hi = document.querySelector('.hi');
-hi.addEventListener('mouseover', () => hi.style.backgroundColor = 'black');
 
 
 
