@@ -33,14 +33,15 @@ function createRowOfElements(dimensions) {
 	let div = createDivElement();
 	let arrayOfDivs = [];
 	let row = createRow();
-
 	//Adds the divs into the array
+
 	for (let i = 0; i < dimensions; i++) {
-		addEventToDivs(div);
-		arrayOfDivs.unshift(div.cloneNode(true));
-	}
+			addEventToDivs(div);
+			arrayOfDivs.unshift(div.cloneNode(true));
+		}
 	//Appends the array elements onto the row
 	arrayOfDivs.forEach((div) => row.appendChild(div));
+
 
 	createGrid(row);
 }
@@ -55,17 +56,25 @@ function addEventToDivs(div) {
 }
 
 
+
+function deleteGrid(grid) {
+	//deletes any existing child element of master-container deleting the grid in the process
+	grid.innerHTML = '';
+}
+
 function createGrid(row) {
 	//Duplicates the row to always create a squared canvas
 	let dimension = row.children.length;
 	let arrayOfRows = [];
 	let grid = document.querySelector('.master-container');
+	deleteGrid(grid);
 	
-	for (let i = 0; i < dimension; i++) {
+	for (let i = 0; i < (dimension); i++) {
 		arrayOfRows.unshift(row.cloneNode(true));
 	}
 
 	arrayOfRows.forEach((row) => grid.appendChild(row));
+	
 
 }
 

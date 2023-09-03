@@ -8,7 +8,7 @@ html{
   box-sizing: inherit; 
 }
 
-body, .master-container{
+body, .row, .master-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,11 +21,27 @@ body {
   flex-direction: column;
 }
 
+.master-container {
+  min-width: 500px;
+  min-height: 500px;
+  padding: 0;
+  flex-direction: column;
+  border: 1px solid white;
+}
+
+.row {
+  /* padding: 0;
+  margin: 0; */
+}
+
+.element {
+  /* margin: 0; */
+  background-color: white;
+}
+
 .prompt {
   background-color: white;
   color: rgb(30, 50, 67);
   margin: 50px;
 }
-
-
 
