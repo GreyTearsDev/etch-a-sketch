@@ -1,42 +1,75 @@
-//Creates a div element and gives it a class name
-let squareDivs = document.createElement('div');
-squareDivs.className = 'grid-element';
+let btn = document.querySelector('.prompt');
+btn.addEventListener('click', () => getDimensions());
 
-createGridOfDivs();
 
-function changeDivColor(element) {
-	//changes the color of the div if the mouse hovers over it
-	element.target.style.backgroundColor = 'black';
-}
-
-function addEventToDivs(arrayOfDivs) {
-	//adds the event listener to each of the divs;
-	for (element in arrayOfDivs) {
-		arrayOfDivs[element].addEventListener('mouseover', (event) => changeDivColor(event));
+function getDimensions() {
+	// Prompts the user to get the dimensions for the canvas
+	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
+	if (dimensions < 2) {
+		dimensions = 4;
+	} else if (dimensions > 100) {
+		dimensions = 100;
 	}
+	createRowOfElements(dimensions);
 }
 
-function createArrayOfDivs(div) {
-	//Creates an array of divs
+
+function createDivElement() {
+	//Creates a div element and gives it a class name
+	let divElement = document.createElement('div');
+	divElement.classList.add('element');
+	return divElement;
+}
+
+function createRow() {
+	//Creates a div element and gives it a class name
+	let row = document.createElement('div');
+	row.classList.add('row');
+	return row;
+}
+
+function createRowOfElements(dimensions) {
+	//Appends the divs onto the Grid container to crate the grid
+	let div = createDivElement();
 	let arrayOfDivs = [];
-	
-	for (let i = 0; i < (16 * 16); i++) {
+	let row = createRow();
+
+	//Adds the divs into the array
+	for (let i = 0; i < dimensions; i++) {
+		addEventToDivs(div);
 		arrayOfDivs.unshift(div.cloneNode(true));
 	}
-	// Add an event listener to ech of the divs in the array
-	addEventToDivs(arrayOfDivs);
-	return arrayOfDivs;
+	//Appends the array elements onto the row
+	arrayOfDivs.forEach((div) => row.appendChild(div));
+
+	createGrid(row);
 }
 
-function createGridOfDivs() {
-	//Appends the divs onto the Grid container to crate the grid
-	let arrayOfDivs = createArrayOfDivs(squareDivs);
-	let gridContainer = document.body.querySelector('.grid-container');
+function addEventToDivs(div) {
+	//adds the event listener to each of the divs;
+	let event = div.addEventListener('mouseover', (e) => {
+		e.target.style.backgroundColor = 'black';
+	});
 
-	for (element in arrayOfDivs) {
-		gridContainer.appendChild(arrayOfDivs[element]);
+	return event;
+}
+
+
+function createGrid(row) {
+	//Duplicates the row to always create a squared canvas
+	let dimension = row.children.length;
+	let arrayOfRows = [];
+	let grid = document.querySelector('.master-container');
+	
+	for (let i = 0; i < dimension; i++) {
+		arrayOfRows.unshift(row.cloneNode(true));
 	}
+
+	arrayOfRows.forEach((row) => grid.appendChild(row));
+
 }
+
+
 
 
 
