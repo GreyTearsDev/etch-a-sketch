@@ -8,35 +8,35 @@ html{
   box-sizing: inherit; 
 }
 
-body, .row, .master-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 body {
   background-color: rgb(30, 50, 67);
   height: 100vh;
   border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
 .master-container {
-  min-width: 500px;
-  min-height: 500px;
   padding: 0;
+  display: flex;
   flex-direction: column;
   border: 1px solid white;
 }
 
 .row {
-  /* padding: 0;
-  margin: 0; */
+  display: flex;
 }
 
 .element {
   /* margin: 0; */
   background-color: white;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #ccc;
+  flex-grow: 1;
 }
 
 .prompt {

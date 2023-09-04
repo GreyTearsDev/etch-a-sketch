@@ -1,6 +1,6 @@
 let btn = document.querySelector('.prompt');
 btn.addEventListener('click', () => getDimensions());
-
+createRowOfElements();
 
 function getDimensions() {
 	// Prompts the user to get the dimensions for the canvas
@@ -28,7 +28,7 @@ function createRow() {
 	return row;
 }
 
-function createRowOfElements(dimensions) {
+function createRowOfElements(dimensions = 16) {
 	//Appends the divs onto the Grid container to crate the grid
 	let div = createDivElement();
 	let arrayOfDivs = [];
@@ -51,10 +51,8 @@ function addEventToDivs(div) {
 	let event = div.addEventListener('mouseover', (e) => {
 		e.target.style.backgroundColor = 'black';
 	});
-
 	return event;
 }
-
 
 
 function deleteGrid(grid) {
@@ -77,10 +75,7 @@ function createGrid(row) {
 	
 
 }
-
-
-
-
+ 
 
 
 
