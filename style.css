@@ -10,9 +10,8 @@ html{
 
 
 body {
-  background-color: rgb(30, 50, 67);
+  background-color: #CCCACD;
   height: 100vh;
-  border: 2px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,8 +23,6 @@ body {
   min-height: 500px;
   display: flex;
   flex-direction: column;
-  border: 3px solid rgb(0, 0, 0);
-  flex-shrink: 1;
 }
 
 .row {
@@ -40,9 +37,14 @@ body {
   align-items: stretch;
 }
 
-.prompt {
-  background-color: white;
-  color: rgb(30, 50, 67);
+.btn {
+  border: none;
+  background-color: #4C8BC0;
+  color: #fff;
+  border-radius: 3%;
   margin: 50px;
+  padding: 10px;
+  font-size: 16px;
+
 }
 

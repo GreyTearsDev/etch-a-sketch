@@ -1,4 +1,4 @@
-let btn = document.querySelector('.prompt');
+let btn = document.querySelector('.btn');
 btn.addEventListener('click', () => getDimensions());
 
 //creates default grid
