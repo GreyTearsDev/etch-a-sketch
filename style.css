@@ -20,23 +20,24 @@ body {
 }
 
 .master-container {
-  padding: 0;
+  min-width: 500px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
+  border: 3px solid rgb(0, 0, 0);
+  flex-shrink: 1;
 }
 
 .row {
   display: flex;
+  flex: 1;
 }
 
 .element {
-  /* margin: 0; */
   background-color: white;
-  width: 10px;
-  height: 10px;
   border: 1px solid #ccc;
   flex-grow: 1;
+  align-items: stretch;
 }
 
 .prompt {

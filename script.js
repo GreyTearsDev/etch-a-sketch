@@ -1,5 +1,7 @@
 let btn = document.querySelector('.prompt');
 btn.addEventListener('click', () => getDimensions());
+
+//creates default grid
 createRowOfElements();
 
 function getDimensions() {
@@ -12,7 +14,6 @@ function getDimensions() {
 	}
 	createRowOfElements(dimensions);
 }
-
 
 function createDivElement() {
 	//Creates a div element and gives it a class name
