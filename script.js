@@ -39,7 +39,7 @@ function createRowOfElements(dimensions = 16) {
 	for (let i = 0; i < dimensions; i++) {
 			arrayOfDivs.unshift(div.cloneNode(true));
 		}
-
+	
 	//Appends the array elements onto the row
 	arrayOfDivs.forEach((div) => row.appendChild(div));
 	createGrid(row);
@@ -63,6 +63,7 @@ function createGrid(row) {
 	}
 
 	arrayOfRows.forEach((row) => grid.appendChild(row));
+	addEventToDivs()
 }
 
 
