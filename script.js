@@ -67,8 +67,6 @@ function createGrid(row) {
 }
 
 
-addEventToDivs()
-
 function addEventToDivs() {
 	//selects all divs with the class of .element and adds the event listener 
 	let paintableDivs = document.querySelectorAll('.element');
