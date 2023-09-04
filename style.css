@@ -23,6 +23,7 @@ body {
   min-height: 500px;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 4px 5px #807f8072 ;
 }
 
 .row {
@@ -32,7 +33,7 @@ body {
 
 .element {
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #CCCACD;
   flex-grow: 1;
   align-items: stretch;
 }
@@ -45,6 +46,8 @@ body {
   margin: 50px;
   padding: 10px;
   font-size: 16px;
+  box-shadow: 4px 4px 5px #807f8072 ;
+
 
 }
 
