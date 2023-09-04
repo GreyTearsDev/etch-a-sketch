@@ -34,25 +34,15 @@ function createRowOfElements(dimensions = 16) {
 	let div = createDivElement();
 	let arrayOfDivs = [];
 	let row = createRow();
-	//Adds the divs into the array
 
+	//Adds the divs into the array
 	for (let i = 0; i < dimensions; i++) {
-			addEventToDivs(div);
 			arrayOfDivs.unshift(div.cloneNode(true));
 		}
+
 	//Appends the array elements onto the row
 	arrayOfDivs.forEach((div) => row.appendChild(div));
-
-
 	createGrid(row);
-}
-
-function addEventToDivs(div) {
-	//adds the event listener to each of the divs;
-	let event = div.addEventListener('mouseover', (e) => {
-		e.target.style.backgroundColor = 'black';
-	});
-	return event;
 }
 
 
@@ -66,17 +56,29 @@ function createGrid(row) {
 	let dimension = row.children.length;
 	let arrayOfRows = [];
 	let grid = document.querySelector('.master-container');
-	deleteGrid(grid);
+	deleteGrid(grid); // delete if there is already one on the screen
 	
 	for (let i = 0; i < (dimension); i++) {
 		arrayOfRows.unshift(row.cloneNode(true));
 	}
 
 	arrayOfRows.forEach((row) => grid.appendChild(row));
-	
-
 }
- 
+
+
+addEventToDivs()
+
+function addEventToDivs() {
+	//selects all divs with the class of .element and adds the event listener 
+	let paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = 'black'
+		}));
+}
+
+
+
 
 
 
