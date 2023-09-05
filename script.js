@@ -1,4 +1,4 @@
-let btn = document.querySelector('.btn');
+let btn = document.getElementById('btn-dimension');
 btn.addEventListener('click', () => getDimensions());
 
 //creates default grid
@@ -12,6 +12,8 @@ function getDimensions() {
 	} else if (dimensions > 100) {
 		dimensions = 100;
 	}
+	//removes the events of the old divs
+	removeEventOfDivs();
 	createRowOfElements(dimensions);
 }
 
@@ -76,6 +78,17 @@ function addEventToDivs() {
 		}));
 }
 
+function removeEventOfDivs() {
+	//selects all divs with the class of .element and adds the event listener 
+	let paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = 'black'
+		}));
+}
+
+
+//choose a random color, return it and use the output as the value in the function obove
 
 
 
