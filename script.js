@@ -1,15 +1,16 @@
 //MENU buttons
 
-let btnDimensions = document.getElementById('btn-dimension');
+const btnDimensions = document.getElementById('btn-dimension');
 btnDimensions.addEventListener('click', () => getDimensions());
+
 
 //creates default grid
 createRowOfElements();
 
 function getDimensions() {
 	// Prompts the user to get the dimensions for the canvas
-	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
-	if (typeof dimensions != 'mumber') {
+	let dimensions = prompt('Write a number form 2-100 to set the dimensions');
+	if (typeof dimensions === 'string') {
 		dimensions = 2;
 	}
 	else if (dimensions < 2) {
