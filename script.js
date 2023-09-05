@@ -10,7 +10,7 @@ const btnGhost = document.getElementById('btn-ghost').addEventListener('click', 
 
 const btnHover = document.getElementById('btn-hover').addEventListener('click', addHoverEventToDivs);
 
-const btnGrid = document.getElementById('btn-grid').addEventListener('click', hideGridEvent);
+const btnGrid = document.getElementById('btn-grid').addEventListener('click', toggleGrid);
 
 
 
@@ -198,7 +198,7 @@ function removeGhostEventToDivs() {
 
 //shoe/hide grid
 function hideGrid() {
-	const btnGrid = document.getElementById('btn-grid')
+	const btnGrid = document.getElementById('grid')
 	btnGrid.textContent = 'Show grid'
 	const paintableDivs = document.querySelectorAll('.element');
 	//sets the color of the hovered divs to white
@@ -206,13 +206,22 @@ function hideGrid() {
 }
 
 function showGrid(){
-	const btnGrid = document.getElementById('btn-grid')
+	const btnGrid = document.getElementById('grid')
 	btnGrid.textContent = 'Hide grid'
 	const paintableDivs = document.querySelectorAll('.element');
 	//sets the color of the hovered divs to white
 	paintableDivs.forEach((div) => div.setAttribute('style', 'border: rgb(0, 0, 0, 0.1)'));
 }
 
+function toggleGrid() {
+	const sampleDiv = document.querySelector('.element');
+	
+	if (sampleDiv.style.border = 'rgb(0, 0, 0, 0.1)') {
+		hideGrid();
+	} else if (sampleDiv.style.border = 'rgb(0, 0, 0, 0.0)') {
+		showGrid()
+	}
+}
 
 
 
