@@ -1,50 +1,39 @@
 //MENU buttons
 
 const btnDimensions = document.getElementById('btn-dimension').addEventListener('click', () => getDimensions());
-
 const btnRainbowMode = document.getElementById('btn-rainbow').addEventListener('click', addRainbowEventToDivs);
-
 const btnEraser = document.getElementById('btn-eraser').addEventListener('click', addEraserEventToDivs);
-
 const btnGhost = document.getElementById('btn-ghost').addEventListener('click', addGhostEventToDivs);
-
 const btnHover = document.getElementById('btn-hover').addEventListener('click', addHoverEventToDivs);
-
 const btnGrid = document.getElementById('btn-grid').addEventListener('click', toggleGrid);
-
 
 
 //creates default grid
 createRowOfElements();
 
 function getDimensions() {
-	// Prompts the user to get the dimensions for the canvas
 	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
 	
 	//Regular expression checking if all of the characters are numbers
 	if (/^\d+$/.test(dimensions) === false) {
 		dimensions = 4;
-	}
-	else if (dimensions < 2) {
+	} else if (dimensions < 2) {
 		dimensions = 4;
 	} else if (dimensions > 100) {
 		dimensions = 100;
 	}
-	//removes the events of the old divs
 	removeHoverEventOfDivs();
 	removeRainbowEventToDivs()
 	createRowOfElements(dimensions);
 }
 
 function createDivElement() {
-	//Creates a div element and gives it a class name
 	const divElement = document.createElement('div');
 	divElement.classList.add('element');
 	return divElement;
 }
 
 function createRow() {
-	//Creates a div element and gives it a class name
 	const row = document.createElement('div');
 	row.classList.add('row');
 	return row;
@@ -61,23 +50,15 @@ function createRowOfElements(dimensions = 16) {
 			arrayOfDivs.unshift(div.cloneNode(true));
 		}
 	
-	//Appends the array elements onto the row
 	arrayOfDivs.forEach((div) => row.appendChild(div));
 	createGrid(row);
 }
 
-
-function deleteGrid(grid) {
-	//deletes any existing child element of master-container deleting the grid in the process
-	grid.innerHTML = '';
-}
-
 function createGrid(row) {
-	//Duplicates the row to always create a squared canvas
 	const dimension = row.children.length;
 	const grid = document.querySelector('.master-container');
 	let arrayOfRows = [];
-	deleteGrid(grid); // delete if there is already one on the screen
+	grid.innerHTML = ''; // delete if there is already one on the screen
 	
 	for (let i = 0; i < (dimension); i++) {
 		arrayOfRows.unshift(row.cloneNode(true));
@@ -87,6 +68,7 @@ function createGrid(row) {
 	addHoverEventToDivs()
 }
 
+
 function generateRandomColor() {
 	let red = Math.floor(Math.random() * 255);
 	let green = Math.floor(Math.random() * 255);
@@ -95,55 +77,43 @@ function generateRandomColor() {
 }
 
 
-//ADD EVENTS
-//Normal Mode events
 function addHoverEventToDivs() {
 	removeRainbowEventToDivs()
 	removeEraserEventToDivs()
-	//selects all divs with the class of .element and adds the event listener 
+
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = 'black';
 		}));
 	removeHoverEventOfDivs() 
 }
 
 function removeHoverEventOfDivs() {
-	//selects all divs with the class of .element and adds the event listener 
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = 'black'
 		}));
 }
 
-
-//Rainbow mode events
 function addRainbowEventToDivs() {
 	removeHoverEventOfDivs()
 	removeEraserEventToDivs()
-	//selects all divs with the class of .element and adds the event listener 
+
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = generateRandomColor()
 		}));
 }
 
 function removeRainbowEventToDivs() {
-	//selects all divs with the class of .element and adds the event listener 
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = generateRandomColor()
 		}));
 }
 
-//eraser
 function addEraserEventToDivs() {
 	const paintableDivs = document.querySelectorAll('.element');
-	//sets the color of the hovered divs to white
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			e.target.style.backgroundColor = 'white';
 		}));
@@ -151,14 +121,11 @@ function addEraserEventToDivs() {
 
 function removeEraserEventToDivs() {
 	const paintableDivs = document.querySelectorAll('.element');
-	//sets the color of the hovered divs to white
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
 			e.target.style.backgroundColor = 'white';
 		}));
 }
 
-
-//ghost effect
 function addGhostEventToDivs() {
 	removeGhostEventToDivs()
 	removeHoverEventOfDivs()
@@ -167,11 +134,10 @@ function addGhostEventToDivs() {
 	if (a > 1.0) {
 		a = a - (a - 1.0);
 	}
-	//selects all divs with the class of .element and adds the event listener 
+
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 		let b = a;
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = `rgb(0, 0, 0, ${b + 0.1})`;
 			
 			if (a <= 1.0) {
@@ -188,7 +154,6 @@ function removeGhostEventToDivs() {
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
 		let b = a;
-			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = `rgba(0, 0, 0, ${b + 0.1})`;			
 			if (a <= 1.0) {
 				a = b + 0.1;
@@ -196,12 +161,10 @@ function removeGhostEventToDivs() {
 		}));
 }
 
-//shoe/hide grid
 function hideGrid() {
 	const btnGrid = document.getElementById('grid')
 	btnGrid.textContent = 'Show grid'
 	const paintableDivs = document.querySelectorAll('.element');
-	//sets the color of the hovered divs to white
 	paintableDivs.forEach((div) => div.style.border = '0px none rgba(0, 0, 0, 0)');
 }
 
@@ -209,7 +172,6 @@ function showGrid(){
 	const btnGrid = document.getElementById('grid')
 	btnGrid.textContent = 'Hide grid'
 	const paintableDivs = document.querySelectorAll('.element');
-	//sets the color of the hovered divs to white
 	paintableDivs.forEach((div) => div.style.border = '1px solid rgba(0, 0, 0, 0.05)');
 }
 
@@ -220,9 +182,6 @@ function toggleGrid() {
 	if (divBorder == '1px solid rgba(0, 0, 0, 0.05)') {
 		hideGrid()
 	} else showGrid();
-
-
 }
-
 
 
