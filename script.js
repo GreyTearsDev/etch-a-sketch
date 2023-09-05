@@ -3,6 +3,11 @@
 const btnDimensions = document.getElementById('btn-dimension');
 btnDimensions.addEventListener('click', () => getDimensions());
 
+const btnRainbowMode = document.getElementById('btn-rainbow');
+btnRainbowMode.addEventListener('click', addRainbowEventToDivs)
+
+
+
 
 //creates default grid
 createRowOfElements();
@@ -10,7 +15,8 @@ createRowOfElements();
 function getDimensions() {
 	// Prompts the user to get the dimensions for the canvas
 	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
-	console.log(dimensions)
+	
+	//Regular expression checking if all of the characters are numbers
 	if (/^\d+$/.test(dimensions) === false) {
 		dimensions = 4;
 	}
@@ -20,30 +26,30 @@ function getDimensions() {
 		dimensions = 100;
 	}
 	//removes the events of the old divs
-	removeEventOfDivs();
+	removeHoverEventOfDivs();
 	removeRainbowEventToDivs()
 	createRowOfElements(dimensions);
 }
 
 function createDivElement() {
 	//Creates a div element and gives it a class name
-	let divElement = document.createElement('div');
+	const divElement = document.createElement('div');
 	divElement.classList.add('element');
 	return divElement;
 }
 
 function createRow() {
 	//Creates a div element and gives it a class name
-	let row = document.createElement('div');
+	const row = document.createElement('div');
 	row.classList.add('row');
 	return row;
 }
 
 function createRowOfElements(dimensions = 16) {
 	//Appends the divs onto the Grid container to crate the grid
-	let div = createDivElement();
+	const row = createRow();
+	const div = createDivElement();
 	let arrayOfDivs = [];
-	let row = createRow();
 
 	//Adds the divs into the array
 	for (let i = 0; i < dimensions; i++) {
@@ -63,9 +69,9 @@ function deleteGrid(grid) {
 
 function createGrid(row) {
 	//Duplicates the row to always create a squared canvas
-	let dimension = row.children.length;
+	const dimension = row.children.length;
+	const grid = document.querySelector('.master-container');
 	let arrayOfRows = [];
-	let grid = document.querySelector('.master-container');
 	deleteGrid(grid); // delete if there is already one on the screen
 	
 	for (let i = 0; i < (dimension); i++) {
@@ -73,7 +79,7 @@ function createGrid(row) {
 	}
 
 	arrayOfRows.forEach((row) => grid.appendChild(row));
-	addEventToDivs()
+	addHoverEventToDivs()
 }
 
 function generateRandomColor() {
@@ -89,30 +95,30 @@ function generateRandomColor() {
 
 //ADD EVENTS
 //Normal Mode events
-function addEventToDivs() {
-	removeRainbowEventToDivs()
+function addHoverEventToDivs() {
 	//selects all divs with the class of .element and adds the event listener 
-	let paintableDivs = document.querySelectorAll('.element');
+	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = 'black';
 		}));
 }
 
-function removeEventOfDivs() {
+function removeHoverEventOfDivs() {
 	//selects all divs with the class of .element and adds the event listener 
-	let paintableDivs = document.querySelectorAll('.element');
+	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = 'black'
 		}));
 }
 
+
 //Rainbow mode events
 function addRainbowEventToDivs() {
-	removeEventOfDivs()
+	removeHoverEventOfDivs()
 	//selects all divs with the class of .element and adds the event listener 
-	let paintableDivs = document.querySelectorAll('.element');
+	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = generateRandomColor()
@@ -121,7 +127,7 @@ function addRainbowEventToDivs() {
 
 function removeRainbowEventToDivs() {
 	//selects all divs with the class of .element and adds the event listener 
-	let paintableDivs = document.querySelectorAll('.element');
+	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = generateRandomColor()
