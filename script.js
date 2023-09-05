@@ -1,13 +1,15 @@
 //MENU buttons
 
-const btnDimensions = document.getElementById('btn-dimension');
-btnDimensions.addEventListener('click', () => getDimensions());
+const btnDimensions = document.getElementById('btn-dimension').addEventListener('click', () => getDimensions());
 
-const btnRainbowMode = document.getElementById('btn-rainbow');
-btnRainbowMode.addEventListener('click', addRainbowEventToDivs)
+const btnRainbowMode = document.getElementById('btn-rainbow').addEventListener('click', addRainbowEventToDivs);
 
-const btnEraser = document.getElementById('btn-eraser');
-btnEraser.addEventListener('click', addEraserEventToDivs)
+const btnEraser = document.getElementById('btn-eraser').addEventListener('click', addEraserEventToDivs);
+
+const btnGhost = document.getElementById('btn-ghost').addEventListener('click', addGhostEventToDivs);
+
+const btnHover = document.getElementById('btn-hover').addEventListener('click', addHoverEventToDivs);
+
 
 
 
@@ -89,9 +91,15 @@ function generateRandomColor() {
 	let red = Math.floor(Math.random() * 255);
 	let green = Math.floor(Math.random() * 255);
 	let blue = Math.floor(Math.random() * 255);
-
 	return `rgb(${red}, ${green}, ${blue})`;
 }
+
+// function generateGhostEffect(e) {
+// 	e.target.style.backgroundColor = `rgb(0, 0, 0, ${counter})`
+// 	e.target.style.backgroundColor
+// 	return `rgb(0, 0, 0, ${counter})`;
+// }
+
 
 
 
@@ -99,6 +107,8 @@ function generateRandomColor() {
 //ADD EVENTS
 //Normal Mode events
 function addHoverEventToDivs() {
+	removeRainbowEventToDivs()
+	removeEraserEventToDivs()
 	//selects all divs with the class of .element and adds the event listener 
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
@@ -120,6 +130,7 @@ function removeHoverEventOfDivs() {
 //Rainbow mode events
 function addRainbowEventToDivs() {
 	removeHoverEventOfDivs()
+	removeEraserEventToDivs()
 	//selects all divs with the class of .element and adds the event listener 
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
@@ -147,7 +158,32 @@ function addEraserEventToDivs() {
 		}));
 }
 
+function removeEraserEventToDivs() {
+	const paintableDivs = document.querySelectorAll('.element');
+	//sets the color of the hovered divs to white
+	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
+			e.target.style.backgroundColor = 'white';
+		}));
+}
 
+
+function addGhostEventToDivs() {
+	removeHoverEventOfDivs()
+	removeEraserEventToDivs()
+	let a = 0;
+	console.log('init a:', a)
+	//selects all divs with the class of .element and adds the event listener 
+	const paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
+		let b = a;
+		console.log('init b:', b);
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = `rgb(0, 0, 0, ${b + 0.1})`;
+			console.log('final a:',b);
+			a = b + 0.1;
+			console.log('final a:', a);
+		}));
+}
 
 
 
