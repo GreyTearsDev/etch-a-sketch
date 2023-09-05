@@ -6,6 +6,9 @@ btnDimensions.addEventListener('click', () => getDimensions());
 const btnRainbowMode = document.getElementById('btn-rainbow');
 btnRainbowMode.addEventListener('click', addRainbowEventToDivs)
 
+const btnEraser = document.getElementById('btn-eraser');
+btnEraser.addEventListener('click', addEraserEventToDivs)
+
 
 
 
@@ -134,6 +137,15 @@ function removeRainbowEventToDivs() {
 		}));
 }
 
+
+//eraser
+function addEraserEventToDivs() {
+	const paintableDivs = document.querySelectorAll('.element');
+	//sets the color of the hovered divs to white
+	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
+			e.target.style.backgroundColor = 'white';
+		}));
+}
 
 
 

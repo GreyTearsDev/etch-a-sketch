@@ -70,7 +70,9 @@ body {
     border: 1px solid #CCCACD;
     flex-grow: 1;
     align-items: stretch;
+    color: rgb(31, 31, 130)
 }
+
 
 
 
