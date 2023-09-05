@@ -1,5 +1,7 @@
-let btn = document.getElementById('btn-dimension');
-btn.addEventListener('click', () => getDimensions());
+//MENU buttons
+
+let btnDimensions = document.getElementById('btn-dimension');
+btnDimensions.addEventListener('click', () => getDimensions());
 
 //creates default grid
 createRowOfElements();
@@ -7,13 +9,17 @@ createRowOfElements();
 function getDimensions() {
 	// Prompts the user to get the dimensions for the canvas
 	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
-	if (dimensions < 2) {
+	if (typeof dimensions != 'mumber') {
+		dimensions = 2;
+	}
+	else if (dimensions < 2) {
 		dimensions = 4;
 	} else if (dimensions > 100) {
 		dimensions = 100;
 	}
 	//removes the events of the old divs
 	removeEventOfDivs();
+	removeRainbowEventToDivs()
 	createRowOfElements(dimensions);
 }
 
@@ -68,13 +74,26 @@ function createGrid(row) {
 	addEventToDivs()
 }
 
+function generateRandomColor() {
+	let red = Math.floor(Math.random() * 255);
+	let green = Math.floor(Math.random() * 255);
+	let blue = Math.floor(Math.random() * 255);
 
+	return `rgb(${red}, ${green}, ${blue})`;
+}
+
+
+
+
+//ADD EVENTS
+//Normal Mode events
 function addEventToDivs() {
+	removeRainbowEventToDivs()
 	//selects all divs with the class of .element and adds the event listener 
 	let paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			//changes the color of the div if the mouse hovers over it
-			e.target.style.backgroundColor = 'black'
+			e.target.style.backgroundColor = 'black';
 		}));
 }
 
@@ -87,8 +106,26 @@ function removeEventOfDivs() {
 		}));
 }
 
+//Rainbow mode events
+function addRainbowEventToDivs() {
+	removeEventOfDivs()
+	//selects all divs with the class of .element and adds the event listener 
+	let paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = generateRandomColor()
+		}));
+}
 
-//choose a random color, return it and use the output as the value in the function obove
+function removeRainbowEventToDivs() {
+	//selects all divs with the class of .element and adds the event listener 
+	let paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = generateRandomColor()
+		}));
+}
+
 
 
 
