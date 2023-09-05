@@ -9,9 +9,10 @@ createRowOfElements();
 
 function getDimensions() {
 	// Prompts the user to get the dimensions for the canvas
-	let dimensions = prompt('Write a number form 2-100 to set the dimensions');
-	if (typeof dimensions === 'string') {
-		dimensions = 2;
+	let dimensions = Number(prompt('Write a number form 2-100 to set the dimensions'));
+	console.log(dimensions)
+	if (/^\d+$/.test(dimensions) === false) {
+		dimensions = 4;
 	}
 	else if (dimensions < 2) {
 		dimensions = 4;
