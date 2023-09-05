@@ -183,13 +183,13 @@ function addGhostEventToDivs() {
 function removeGhostEventToDivs() {
 	let a = 0;
 	if (a > 1.0) {
-		a = a - (a - 1.0);
+		a -=(a - 1.0);
 	}
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
 		let b = a;
 			//changes the color of the div if the mouse hovers over it
-			e.target.style.backgroundColor = `rgb(0, 0, 0, ${b + 0.1})`;			
+			e.target.style.backgroundColor = `rgba(0, 0, 0, ${b + 0.1})`;			
 			if (a <= 1.0) {
 				a = b + 0.1;
 			} 
@@ -202,7 +202,7 @@ function hideGrid() {
 	btnGrid.textContent = 'Show grid'
 	const paintableDivs = document.querySelectorAll('.element');
 	//sets the color of the hovered divs to white
-	paintableDivs.forEach((div) => div.setAttribute('style', 'border: rgb(0, 0, 0, 0)'));
+	paintableDivs.forEach((div) => div.style.border = '0px none rgba(0, 0, 0, 0)');
 }
 
 function showGrid(){
@@ -210,17 +210,18 @@ function showGrid(){
 	btnGrid.textContent = 'Hide grid'
 	const paintableDivs = document.querySelectorAll('.element');
 	//sets the color of the hovered divs to white
-	paintableDivs.forEach((div) => div.setAttribute('style', 'border: rgb(0, 0, 0, 0.1)'));
+	paintableDivs.forEach((div) => div.style.border = '1px solid rgba(0, 0, 0, 0.05)');
 }
 
 function toggleGrid() {
 	const sampleDiv = document.querySelector('.element');
+	let divBorder = window.getComputedStyle(sampleDiv, null).getPropertyValue('border')
 	
-	if (sampleDiv.style.border = 'rgb(0, 0, 0, 0.1)') {
-		hideGrid();
-	} else if (sampleDiv.style.border = 'rgb(0, 0, 0, 0.0)') {
-		showGrid()
-	}
+	if (divBorder == '1px solid rgba(0, 0, 0, 0.05)') {
+		hideGrid()
+	} else showGrid();
+
+
 }
 
 
