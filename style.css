@@ -8,7 +8,6 @@ html{
     box-sizing: inherit; 
 }
 
-
 body {
     background-color: #CCCACD;
     display: flex;
@@ -52,7 +51,6 @@ body {
     justify-content: center;
     flex: 1 0 auto;
 }
-
 
 .master-container {
     min-width: 600px;

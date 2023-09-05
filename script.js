@@ -3,6 +3,7 @@
 const btnDimensions = document.getElementById('btn-dimension').addEventListener('click', () => getDimensions());
 const btnRainbowMode = document.getElementById('btn-rainbow').addEventListener('click', addRainbowEventToDivs);
 const btnEraser = document.getElementById('btn-eraser').addEventListener('click', addEraserEventToDivs);
+const btnCLear = document.getElementById('btn-clear').addEventListener('click', addClearEventToDivs);
 const btnGhost = document.getElementById('btn-ghost').addEventListener('click', addGhostEventToDivs);
 const btnHover = document.getElementById('btn-hover').addEventListener('click', addHoverEventToDivs);
 const btnGrid = document.getElementById('btn-grid').addEventListener('click', toggleGrid);
@@ -76,11 +77,32 @@ function generateRandomColor() {
 	return `rgb(${red}, ${green}, ${blue})`;
 }
 
+function hideGrid() {
+	const btnGrid = document.getElementById('grid')
+	btnGrid.textContent = 'Show grid'
+	const paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.style.border = '0px none rgba(0, 0, 0, 0)');
+}
+
+function showGrid(){
+	const btnGrid = document.getElementById('grid')
+	btnGrid.textContent = 'Hide grid'
+	const paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.style.border = '1px solid rgba(0, 0, 0, 0.05)');
+}
+
+function toggleGrid() {
+	const sampleDiv = document.querySelector('.element');
+	let divBorder = window.getComputedStyle(sampleDiv, null).getPropertyValue('border')
+	
+	if (divBorder == '1px solid rgba(0, 0, 0, 0.05)') {
+		hideGrid()
+	} else showGrid();
+}
+
+
 
 function addHoverEventToDivs() {
-	removeRainbowEventToDivs()
-	removeEraserEventToDivs()
-
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			e.target.style.backgroundColor = 'black';
@@ -96,13 +118,11 @@ function removeHoverEventOfDivs() {
 }
 
 function addRainbowEventToDivs() {
-	removeHoverEventOfDivs()
-	removeEraserEventToDivs()
-
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			e.target.style.backgroundColor = generateRandomColor()
 		}));
+	removeRainbowEventToDivs()
 }
 
 function removeRainbowEventToDivs() {
@@ -117,6 +137,7 @@ function addEraserEventToDivs() {
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 			e.target.style.backgroundColor = 'white';
 		}));
+	removeEraserEventToDivs()
 }
 
 function removeEraserEventToDivs() {
@@ -128,8 +149,7 @@ function removeEraserEventToDivs() {
 
 function addGhostEventToDivs() {
 	removeGhostEventToDivs()
-	removeHoverEventOfDivs()
-	removeEraserEventToDivs()
+
 	let a = 0;
 	if (a > 1.0) {
 		a = a - (a - 1.0);
@@ -161,27 +181,7 @@ function removeGhostEventToDivs() {
 		}));
 }
 
-function hideGrid() {
-	const btnGrid = document.getElementById('grid')
-	btnGrid.textContent = 'Show grid'
+function addClearEventToDivs() {
 	const paintableDivs = document.querySelectorAll('.element');
-	paintableDivs.forEach((div) => div.style.border = '0px none rgba(0, 0, 0, 0)');
+	paintableDivs.forEach((div) => div.style.backgroundColor = 'white');
 }
-
-function showGrid(){
-	const btnGrid = document.getElementById('grid')
-	btnGrid.textContent = 'Hide grid'
-	const paintableDivs = document.querySelectorAll('.element');
-	paintableDivs.forEach((div) => div.style.border = '1px solid rgba(0, 0, 0, 0.05)');
-}
-
-function toggleGrid() {
-	const sampleDiv = document.querySelector('.element');
-	let divBorder = window.getComputedStyle(sampleDiv, null).getPropertyValue('border')
-	
-	if (divBorder == '1px solid rgba(0, 0, 0, 0.05)') {
-		hideGrid()
-	} else showGrid();
-}
-
-
