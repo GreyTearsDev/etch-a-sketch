@@ -10,7 +10,7 @@ const btnGhost = document.getElementById('btn-ghost').addEventListener('click', 
 
 const btnHover = document.getElementById('btn-hover').addEventListener('click', addHoverEventToDivs);
 
-
+const btnGrid = document.getElementById('btn-grid').addEventListener('click', hideGridEvent);
 
 
 
@@ -94,15 +94,6 @@ function generateRandomColor() {
 	return `rgb(${red}, ${green}, ${blue})`;
 }
 
-// function generateGhostEffect(e) {
-// 	e.target.style.backgroundColor = `rgb(0, 0, 0, ${counter})`
-// 	e.target.style.backgroundColor
-// 	return `rgb(0, 0, 0, ${counter})`;
-// }
-
-
-
-
 
 //ADD EVENTS
 //Normal Mode events
@@ -149,7 +140,6 @@ function removeRainbowEventToDivs() {
 		}));
 }
 
-
 //eraser
 function addEraserEventToDivs() {
 	const paintableDivs = document.querySelectorAll('.element');
@@ -168,6 +158,7 @@ function removeEraserEventToDivs() {
 }
 
 
+//ghost effect
 function addGhostEventToDivs() {
 	removeGhostEventToDivs()
 	removeHoverEventOfDivs()
@@ -205,7 +196,22 @@ function removeGhostEventToDivs() {
 		}));
 }
 
+//shoe/hide grid
+function hideGrid() {
+	const btnGrid = document.getElementById('btn-grid')
+	btnGrid.textContent = 'Show grid'
+	const paintableDivs = document.querySelectorAll('.element');
+	//sets the color of the hovered divs to white
+	paintableDivs.forEach((div) => div.setAttribute('style', 'border: rgb(0, 0, 0, 0)'));
+}
 
+function showGrid(){
+	const btnGrid = document.getElementById('btn-grid')
+	btnGrid.textContent = 'Hide grid'
+	const paintableDivs = document.querySelectorAll('.element');
+	//sets the color of the hovered divs to white
+	paintableDivs.forEach((div) => div.setAttribute('style', 'border: rgb(0, 0, 0, 0.1)'));
+}
 
 
 
