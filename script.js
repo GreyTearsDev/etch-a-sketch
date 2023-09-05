@@ -115,6 +115,7 @@ function addHoverEventToDivs() {
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = 'black';
 		}));
+	removeHoverEventOfDivs() 
 }
 
 function removeHoverEventOfDivs() {
@@ -168,20 +169,39 @@ function removeEraserEventToDivs() {
 
 
 function addGhostEventToDivs() {
+	removeGhostEventToDivs()
 	removeHoverEventOfDivs()
 	removeEraserEventToDivs()
 	let a = 0;
-	console.log('init a:', a)
+	if (a > 1.0) {
+		a = a - (a - 1.0);
+	}
 	//selects all divs with the class of .element and adds the event listener 
 	const paintableDivs = document.querySelectorAll('.element');
 	paintableDivs.forEach((div) => div.addEventListener('mouseover', (e) => {
 		let b = a;
-		console.log('init b:', b);
 			//changes the color of the div if the mouse hovers over it
 			e.target.style.backgroundColor = `rgb(0, 0, 0, ${b + 0.1})`;
-			console.log('final a:',b);
-			a = b + 0.1;
-			console.log('final a:', a);
+			
+			if (a <= 1.0) {
+				a = b + 0.1;
+			} 
+		}));
+}
+
+function removeGhostEventToDivs() {
+	let a = 0;
+	if (a > 1.0) {
+		a = a - (a - 1.0);
+	}
+	const paintableDivs = document.querySelectorAll('.element');
+	paintableDivs.forEach((div) => div.removeEventListener('mouseover', (e) => {
+		let b = a;
+			//changes the color of the div if the mouse hovers over it
+			e.target.style.backgroundColor = `rgb(0, 0, 0, ${b + 0.1})`;			
+			if (a <= 1.0) {
+				a = b + 0.1;
+			} 
 		}));
 }
 
